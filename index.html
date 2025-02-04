@@ -1,1 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Newsletter Generator</title>
+    <!-- Add TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add our custom styles -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2799/2799895.png">
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto p-6 max-w-4xl">
+        <div class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-800">AI Newsletter Generator</h1>
+            <p class="text-gray-600 mt-2">Generate newsletter content from URLs using Claude AI</p>
+        </div>
 
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <!-- API Key Section -->
+            <div id="apiKeySection" class="mb-6">
+                <div class="space-y-2">
+                    <label class="block font-medium text-gray-700">Enter your Claude API Key:</label>
+                    <div class="flex gap-2">
+                        <input type="password" id="apiKeyInput" 
+                            class="flex-1 p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                            placeholder="sk-..." />
+                        <button id="saveApiKey" 
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-150">
+                            Save Key
+                        </button>
+                    </div>
+                    <p id="apiKeyStatus" class="text-sm text-gray-600"></p>
+                    <p class="text-xs text-gray-500">Your API key is stored only in your browser's local storage.</p>
+                </div>
+            </div>
+
+            <!-- URL Input Section -->
+            <div class="space-y-2 mb-6">
+                <label class="block font-medium text-gray-700">Paste URLs (one per line):</label>
+                <textarea id="urlInput" 
+                    class="w-full h-32 p-2 border rounded-md font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="https://example.com/article1&#10;https://example.com/article2"></textarea>
+                <p class="text-xs text-gray-500">Each URL should be on a new line.</p>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex gap-4 mb-6">
+                <button id="generateBtn" 
+                    class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-150 flex items-center gap-2">
+                    <span>Generate Newsletter</span>
+                </button>
+                <button id="exportBtn" 
+                    class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition duration-150 flex items-center gap-2 hidden">
+                    <span>Export to Word</span>
+                </button>
+            </div>
+
+            <!-- Status Section -->
+            <div id="statusSection" class="mb-6 hidden">
+                <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+                    <p id="statusMessage" class="text-blue-700"></p>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div id="previewSection" class="space-y-6 hidden">
+                <div class="border rounded-md p-4">
+                    <h2 class="text-xl font-bold mb-2">Norwegian Version</h2>
+                    <div id="norwegianContent" class="whitespace-pre-wrap prose max-w-none"></div>
+                </div>
+                
+                <div class="border rounded-md p-4">
+                    <h2 class="text-xl font-bold mb-2">English Version</h2>
+                    <div id="englishContent" class="whitespace-pre-wrap prose max-w-none"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-8 text-center text-sm text-gray-500">
+            <p>Make sure to use your own Claude API key from <a href="https://console.anthropic.com/" target="_blank" class="text-blue-500 hover:text-blue-600">Anthropic Console</a></p>
+        </footer>
+    </div>
+
+    <!-- Add our script -->
+    <script src="script.js"></script>
+</body>
+</html>
