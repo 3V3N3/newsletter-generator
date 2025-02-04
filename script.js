@@ -69,12 +69,14 @@ async function processArticle(url) {
             "englishSummary": "Your English summary here..."
         }`;
 
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
+        // Use a CORS proxy
+        const response = await fetch('https://cors-anywhere.herokuapp.com/https://api.anthropic.com/v1/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-api-key': apiKey,
-                'anthropic-version': '2024-01-01'
+                'anthropic-version': '2024-01-01',
+                'origin': 'https://api.anthropic.com'
             },
             body: JSON.stringify({
                 model: "claude-3-sonnet-20240229",
@@ -84,6 +86,7 @@ async function processArticle(url) {
                     content: prompt
                 }]
             })
+        });
         });
 
         if (!response.ok) {
