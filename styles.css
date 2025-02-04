@@ -1,1 +1,74 @@
+/* Base styles */
+.hidden {
+    display: none !important;
+}
 
+/* Textarea styles */
+textarea {
+    white-space: pre;
+    overflow-wrap: break-word;
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Loading animation for buttons */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1em;
+    height: 1em;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+/* Error state styles */
+.error-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Status message transitions */
+#statusSection {
+    transition: all 0.3s ease;
+}
+
+/* Preview content styles */
+#norwegianContent, #englishContent {
+    line-height: 1.6;
+}
+
+/* Button hover effects */
+button:not(:disabled):hover {
+    transform: translateY(-1px);
+    transition: transform 0.2s ease;
+}
+
+button:not(:disabled):active {
+    transform: translateY(0);
+}
+
+/* Focus styles */
+input:focus, textarea:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
